@@ -23,7 +23,7 @@
        <h2>Tarta de Ricota</h2>
        <div class="img-container">
         <img src="./assets/tarta de ricota.webp" alt="Tarta de Ricota"/>
-        <button class="zoom-btn">Zoom</button>
+
        </div>
        <p>
          Una deliciosa tarta cremosa hecha con ricota, perfecta para una
@@ -37,7 +37,6 @@
         <h2>Brownie de Chocolate</h2>
         <div class="img-container">
         <img src="./assets/brownie.webp" alt="Brownie de Chocolate"/>
-        <button class="zoom-btn">Zoom</button>
         </div>
         <p>
           Un brownie húmedo y chocolatoso, perfecto para los amantes del
@@ -49,52 +48,5 @@
         <hr>
       </section>
     </main>
-    <script>
-      document.querySelectorAll('.zoom-btn').forEach(button => {
-        button.addEventListener('click', () => {
-          const img = button.previousElementSibling;
-          const zoomedContainer = document.createElement('div');
-          zoomedContainer.classList.add('zoomed');
-          const zoomedImg = img.cloneNode();
-          zoomedImg.style.width = img.naturalWidth + 'px';
-          zoomedImg.style.height = img.naturalHeight + 'px';
-          zoomedContainer.appendChild(zoomedImg);
-          document.body.appendChild(zoomedContainer);
-
-          let isDragging = false;
-          let startX, startY, translateX = 0, translateY = 0;
-
-          zoomedImg.addEventListener('mousedown', startDrag);
-          zoomedImg.addEventListener('mousemove', drag);
-          zoomedImg.addEventListener('mouseup', endDrag);
-          zoomedImg.addEventListener('mouseleave', endDrag);
-
-          function startDrag(e) {
-            isDragging = true;
-            startX = e.clientX - translateX;
-            startY = e.clientY - translateY;
-          }
-
-          function drag(e) {
-            if (isDragging) {
-              e.preventDefault();
-              translateX = e.clientX - startX;
-              translateY = e.clientY - startY;
-              zoomedImg.style.transform = `translate(${translateX}px, ${translateY}px)`;
-            }
-          }
-
-          function endDrag() {
-            isDragging = false;
-          }
-
-          zoomedContainer.addEventListener('click', (e) => {
-            if (e.target === zoomedContainer) {
-              zoomedContainer.remove();
-            }
-          });
-        });
-      });
-    </script>
   </body>
 </html>
